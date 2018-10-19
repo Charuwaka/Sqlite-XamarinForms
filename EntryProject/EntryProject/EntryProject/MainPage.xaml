@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:EntryProject"
+             BackgroundColor="White"
+             xmlns:locals="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions"
+             x:Class="EntryProject.MainPage">
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.08*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" BackgroundColor="White" RowSpacing="0">
+            <Label Text="Search" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" FontSize="18"/>
+            <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand"  VerticalOptions="End" BackgroundColor="DarkGray"/>
+        </Grid>
+        <Grid Grid.Row="1" RowSpacing="0">
+            <Button Text="Insert Data" Clicked="SaveData" HorizontalOptions="Center" VerticalOptions="Center" Margin="12,12"/>
+            <Button Text="Export DB" Clicked="ExportData" HorizontalOptions="Center" VerticalOptions="End" Margin="12,12"/>
+        </Grid>
+    </Grid>
+</ContentPage>
