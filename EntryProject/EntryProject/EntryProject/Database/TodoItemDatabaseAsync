@@ -7,7 +7,7 @@ using SQLiteNetExtensionsAsync.Extensions;
 
 namespace Todo
 {
-	public class TodoItemDatabase
+	public class TodoItemDatabaseAsync
 	{
 	    private readonly SQLiteAsyncConnection database;
         public TodoItemDatabase(string dbPath)
