@@ -1,0 +1,48 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using EntryProject.Model;
+using SQLite;
+using SQLiteNetExtensionsAsync.Extensions;
+
+namespace Todo
+{
+	public class TodoItemDatabase
+	{
+	    private readonly SQLiteAsyncConnection database;
+        public TodoItemDatabase(string dbPath)
+		{
+            database = new SQLiteAsyncConnection(dbPath);
+			database.CreateTableAsync<Employee>().Wait();
+            database.CreateTableAsync<Duty>().Wait();
+            database.CreateTableAsync<Work>().Wait();
+        }
+
+        public async Task SaveData(Employee _studentdata)
+        {
+            await database.InsertAsync(_studentdata); //Inserting Employee Object
+            await database.InsertAllWithChildrenAsync(_studentdata.Duties,true); //Inserting Duties of Employee along with Works
+            await database.UpdateWithChildrenAsync(_studentdata); //Updating Relation Ship Between Entities
+           
+        }
+
+        public async Task<int> UpdateEmployeeItemAsync(Employee item)
+        {
+            return await database.UpdateAsync(item);
+        }
+        public async Task<Employee> GetItemsAsync(int id)
+		{
+            return await database.GetWithChildrenAsync<Employee>(id,true);
+        }
+
+        public  async Task<List<Employee>> GetEmployeesList()
+        {
+            return await database.GetAllWithChildrenAsync<Employee>(null,true);
+        }
+        public async Task<int> DeleteEmployeeItemAsync(Employee item)
+        {
+            return await database.DeleteAsync<Employee>(item);
+        }
+    }
+}
+
